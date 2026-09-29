@@ -3,7 +3,20 @@ import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import './globals.css';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+/**
+ * URL absolue du site, utilisée par `metadataBase` pour résoudre les images
+ * Open Graph. Ordre de priorité :
+ *   1. NEXT_PUBLIC_SITE_URL — domaine définitif, à définir une fois en ligne ;
+ *   2. VERCEL_PROJECT_PRODUCTION_URL — domaine de production Vercel, injecté
+ *      automatiquement : les aperçus de partage sont donc corrects dès le
+ *      premier déploiement, sans configuration ;
+ *   3. localhost en développement.
+ */
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'http://localhost:3000');
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
