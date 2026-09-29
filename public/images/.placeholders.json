@@ -1,0 +1,125 @@
+{
+  "files": {
+    "/images/hero/halloween-hero.webp": {
+      "sha256": "bac8307b77e75f4d08e1a9bef68f322af036d015e9effc96e0804447eb1728f5",
+      "width": 2400,
+      "height": 1350,
+      "generatedAt": "2026-09-29T19:43:22.167Z"
+    },
+    "/images/categories/decorations.webp": {
+      "sha256": "f5e3f61f6c275e6cbcaf049baddef829a6f3839165e46149b6d53d7e6e2e07f9",
+      "width": 1200,
+      "height": 900,
+      "generatedAt": "2026-09-29T19:43:22.811Z"
+    },
+    "/images/categories/costumes.webp": {
+      "sha256": "309d1286e81b2fb8b3fb6aaccaabdddab56fb2a301162364cd50fe42dc115228",
+      "width": 1200,
+      "height": 900,
+      "generatedAt": "2026-09-29T19:43:23.622Z"
+    },
+    "/images/categories/accessories.webp": {
+      "sha256": "aa43dc2c1ee427fc3a83407897532a1dc85cb990eea2c61d4184013b603dd6cf",
+      "width": 1200,
+      "height": 900,
+      "generatedAt": "2026-09-29T19:43:24.276Z"
+    },
+    "/images/categories/lighting.webp": {
+      "sha256": "06dc60aa278569f0794d068835d8ba66b4260f0efeddc48977003429e9f88660",
+      "width": 1200,
+      "height": 900,
+      "generatedAt": "2026-09-29T19:43:25.004Z"
+    },
+    "/images/categories/parties.webp": {
+      "sha256": "6a5e6e2b801c7647f880bd22b336e6aef61b1b8bafcd0253d659c9259d14d566",
+      "width": 1200,
+      "height": 900,
+      "generatedAt": "2026-09-29T19:43:25.533Z"
+    },
+    "/images/categories/gifts.webp": {
+      "sha256": "bf250c3425629405c4bd7dec18dbcd194e7f0ad4333ce141b6f4de186c0ccc3c",
+      "width": 1200,
+      "height": 900,
+      "generatedAt": "2026-09-29T19:43:26.130Z"
+    },
+    "/images/products/pumpkin-led.webp": {
+      "sha256": "8e0aee45c74c8485e2f7c7453bceefdb364989ae114fb38384d42f34ecbe1fd4",
+      "width": 1000,
+      "height": 1250,
+      "generatedAt": "2026-09-29T19:43:26.842Z"
+    },
+    "/images/products/giant-skeleton.webp": {
+      "sha256": "ba4bf6f02ff7d23f8fe3a8c931266b13a991ba6dc2eb6e9f17c9bc9b491d2fe6",
+      "width": 1000,
+      "height": 1250,
+      "generatedAt": "2026-09-29T19:43:27.537Z"
+    },
+    "/images/products/witch-costume.webp": {
+      "sha256": "6a990a4261c654a4dd11d964c5705c072b59b2474a6f4ddffe89d6edac20e3d1",
+      "width": 1000,
+      "height": 1250,
+      "generatedAt": "2026-09-29T19:43:28.120Z"
+    },
+    "/images/products/pumpkin-garland.webp": {
+      "sha256": "14c7dd63f6db2b11b51241d01ca437e1fb6d7c4513b8f567ee1769438caee7b3",
+      "width": 1254,
+      "height": 1254,
+      "generatedAt": "2026-09-29T20:16:16.531Z"
+    },
+    "/images/products/giant-spider-web.webp": {
+      "sha256": "ee8196f8b166fcac8f9ca484e64e5f3e7f81377c9b84cfc63c762e546b982acd",
+      "width": 1254,
+      "height": 1254,
+      "generatedAt": "2026-09-29T20:16:17.405Z"
+    },
+    "/images/products/vampire-cape.webp": {
+      "sha256": "fd46c9a0b55da515cd5fcb3d7e9dc6f5eb4e316f4e50a810cb396afe6a4aa0f4",
+      "width": 1254,
+      "height": 1254,
+      "generatedAt": "2026-09-29T20:16:18.526Z"
+    },
+    "/images/products/skull-lantern.webp": {
+      "sha256": "e77584e9d699c4e7945f8e30a59e6a9b6835556ae9910b9335cb714ed49535c0",
+      "width": 1000,
+      "height": 1250,
+      "generatedAt": "2026-09-29T19:43:31.188Z"
+    },
+    "/images/products/halloween-mask.webp": {
+      "sha256": "25ffeb4a062910d32daccf7a91e63bdeef5c63dde1a61901c51c5edd7617d3ba",
+      "width": 1254,
+      "height": 1254,
+      "generatedAt": "2026-09-29T20:16:19.465Z"
+    },
+    "/images/products/ghost-decoration.webp": {
+      "sha256": "d7fbd395f851965690581b727acf89806ab2865f4e5b64a810aa1c93951d755e",
+      "width": 1000,
+      "height": 1250,
+      "generatedAt": "2026-09-29T19:43:32.803Z"
+    },
+    "/images/products/halloween-candles.webp": {
+      "sha256": "1b3943869c36a18507e168072eb06d7538c65abcb5a763af3a0a9d3802dced14",
+      "width": 1000,
+      "height": 1250,
+      "generatedAt": "2026-09-29T19:43:33.548Z"
+    },
+    "/images/products/bat-decoration.webp": {
+      "sha256": "68fed05920b0dbfbae7ae958f91529410872527baed71bd2ee23e484cce48640",
+      "width": 1254,
+      "height": 1254,
+      "generatedAt": "2026-09-29T20:16:20.377Z"
+    },
+    "/images/products/halloween-tableware.webp": {
+      "sha256": "701abdca7addac15814279785591fff6ddd20519a6d67d778a27da1212db6702",
+      "width": 1000,
+      "height": 1250,
+      "generatedAt": "2026-09-29T19:43:34.972Z"
+    },
+    "/images/banners/halloween-sale.webp": {
+      "sha256": "a5db09752a82d783c2c328d0068d4b8bb2382749ce42692d22e0fa107df1c2e2",
+      "width": 2000,
+      "height": 800,
+      "generatedAt": "2026-09-29T19:43:36.071Z"
+    }
+  },
+  "note": "Empreintes des placeholders generes. Un fichier dont le SHA differe est considere comme le visuel definitif."
+}
