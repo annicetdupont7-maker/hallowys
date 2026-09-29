@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { AssetImage } from '@/components/asset-image';
 
 /**
- * HERO — asset `hero.main` (/images/hero/halloween-hero.webp).
+ * HERO : asset `hero.main` (/images/hero/halloween-hero.webp).
  *
  * Seul visuel du site chargé en priorité (LCP). L'image ne porte aucun texte :
  * titre, accroche et CTA sont du HTML posé au-dessus, via un voile dégradé qui
@@ -18,7 +18,7 @@ export function Hero() {
         imageClassName="object-center"
       />
 
-      {/* Voile de lisibilité — au-dessus de l'image, sous le texte. */}
+      {/* Voile de lisibilité : au-dessus de l'image, sous le texte. */}
       <div aria-hidden className="scrim-hero absolute inset-0" />
 
       <div className="absolute inset-0 flex items-end pb-14 sm:items-center sm:pb-0">
@@ -41,16 +41,16 @@ export function Hero() {
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
-                href="#categories"
+                href="/boutique"
                 className="rounded-full bg-pumpkin px-6 py-3 text-sm font-semibold text-void shadow-[0_0_40px_-10px_var(--color-pumpkin)] transition-transform hover:scale-[1.02]"
               >
-                Explorer la collection
+                Découvrir la boutique
               </Link>
               <Link
-                href="#promotions"
+                href="/promotions"
                 className="rounded-full border border-line bg-void/50 px-6 py-3 text-sm font-semibold text-ink backdrop-blur transition-colors hover:border-pumpkin/50 hover:text-pumpkin"
               >
-                Voir les offres
+                Voir les promotions
               </Link>
             </div>
 

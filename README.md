@@ -1,12 +1,12 @@
 # HALLOWYS
 
-Boutique Halloween — Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS 4.
+Boutique Halloween : Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS 4.
 
 Le site est construit **autour de son architecture d'images** : chaque visuel est
 déclaré une seule fois dans un registre typé, et toute l'interface s'y branche.
 Les fichiers définitifs se déposent à leur chemin ; rien d'autre ne bouge.
 
-**État des visuels : 16 assets — 16 définitifs, 0 placeholder.**
+**État des visuels : 19 assets, tous définitifs.**
 Le site n'affiche que ce dont le visuel existe : produits et catégories sans
 image ont été retirés du catalogue plutôt que remplis d'un vide
 (détail dans [`docs/IMAGE_ASSETS.md`](docs/IMAGE_ASSETS.md) §4).
@@ -30,24 +30,22 @@ npm run dev     # http://localhost:3000
 ## Structure
 
 ```text
-assets-source/
-  GENERATION_IMAGE/    ← originaux fournis (hors public/, non déployés)
 src/
-  lib/images.ts        ← REGISTRE D'ASSETS : source unique de vérité
-  lib/catalog.ts       ← catégories + produits (référencent une clé d'image)
-  components/
-    asset-image.tsx    ← seul composant autorisé à appeler next/image
-    hero.tsx  category-card.tsx  product-card.tsx
-    sale-banner.tsx  testimonials.tsx
-    site-header.tsx  site-footer.tsx
+  lib/catalog.ts       ← SOURCE UNIQUE : catégories, produits (prix, stock, options), recherche, filtres, tri
+  lib/cart.ts          ← PANIER centralisé (localStorage, compteur, totaux, livraison)
+  lib/faq.ts  lib/site.ts  lib/images.ts (registre d'assets)
+  components/          header (menu mobile, recherche, compteur), cartes, panier, boutique, FAQ...
   app/
     page.tsx                     accueil
-    categories/[slug]/page.tsx   5 pages catégories (SSG)
-    products/[slug]/page.tsx     7 fiches produits (SSG)
-public/images/         ← hero · categories · products · banners · testimonials
-scripts/               ← import, génération de placeholders, audit
-docs/IMAGE_ASSETS.md   ← inventaire, emplacements, dimensions, zones de sécurité
+    boutique/                    recherche + filtres + tri (état dans l'URL)
+    categories/[slug]/           6 catégories (SSG)
+    products/[slug]/             9 fiches produits (SSG)
+    promotions/  panier/  faq/  contact/
 ```
+
+Le site est 100 % frontend : panier et inscription newsletter sont conservés
+dans le `localStorage` du navigateur ; le formulaire de contact prépare un
+e-mail dans la messagerie de l'utilisateur. Aucun paiement n'est branché.
 
 ## Règles d'images appliquées
 
