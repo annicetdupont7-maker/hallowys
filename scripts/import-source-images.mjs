@@ -39,7 +39,6 @@ const MAPPING = [
   // --- Catégories (4:3)
   ['WhatsApp Image 2026-09-29 at 20.57.48 (1).jpeg', 'images/categories/decorations.webp'],
   ['WhatsApp Image 2026-09-29 at 20.57.49.jpeg', 'images/categories/costumes.webp'],
-  ['WhatsApp Image 2026-09-29 at 20.57.51.jpeg', 'images/categories/accessories.webp'],
   ['WhatsApp Image 2026-09-29 at 20.57.51 (1).jpeg', 'images/categories/lighting.webp'],
   ['WhatsApp Image 2026-09-29 at 20.57.52.jpeg', 'images/categories/parties.webp'],
   ['WhatsApp Image 2026-09-29 at 20.57.52 (1).jpeg', 'images/categories/gifts.webp'],
@@ -60,6 +59,20 @@ const MAPPING = [
   ['WhatsApp Image 2026-09-29 at 20.57.54.jpeg', 'images/testimonials/portrait-1.webp'],
   ['WhatsApp Image 2026-09-29 at 20.57.54 (1).jpeg', 'images/testimonials/portrait-2.webp'],
 ];
+
+/**
+ * EN RÉSERVE — visuel disponible mais volontairement non importé.
+ *
+ * La catégorie « Accessoires » a été retirée du catalogue : aucun produit
+ * accessoire ne dispose d'un visuel, la page aurait donc été vide. Son image
+ * de catégorie reste disponible dans `assets-source/`.
+ *
+ * Pour la réactiver : déplacer la ligne ci-dessous dans MAPPING, remettre
+ * l'entrée `category.accessories` dans `src/lib/images.ts`, et la catégorie
+ * dans `CATEGORIES` (`src/lib/catalog.ts`) — avec au moins un produit.
+ *
+ *   ['WhatsApp Image 2026-09-29 at 20.57.51.jpeg', 'images/categories/accessories.webp'],
+ */
 
 async function main() {
   if (!existsSync(SOURCE_DIR)) {

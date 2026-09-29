@@ -104,7 +104,7 @@ export default async function ProductPage({ params }: Params) {
             </p>
           ) : null}
 
-          <h1 className="mt-3 font-[family-name:var(--font-display)] text-3xl leading-tight text-ink sm:text-4xl">
+          <h1 className="mt-3 font-display text-3xl leading-tight text-ink sm:text-4xl">
             {product.name}
           </h1>
 
@@ -174,7 +174,7 @@ export default async function ProductPage({ params }: Params) {
         <section aria-labelledby="related-title" className="mt-20">
           <h2
             id="related-title"
-            className="font-[family-name:var(--font-display)] text-2xl text-ink sm:text-3xl"
+            className="font-display text-2xl text-ink sm:text-3xl"
           >
             Dans le même décor
           </h2>

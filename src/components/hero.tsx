@@ -29,7 +29,7 @@ export function Hero() {
               Collection 31 octobre
             </p>
 
-            <h1 className="mt-5 font-[family-name:var(--font-display)] text-4xl leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 font-display text-4xl leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl">
               La nuit
               <span className="block text-pumpkin">vous va si bien.</span>
             </h1>

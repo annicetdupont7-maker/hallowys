@@ -6,8 +6,10 @@ Le site est construit **autour de son architecture d'images** : chaque visuel es
 déclaré une seule fois dans un registre typé, et toute l'interface s'y branche.
 Les fichiers définitifs se déposent à leur chemin ; rien d'autre ne bouge.
 
-**État des visuels : 22 assets — 17 définitifs, 5 placeholders**
-(voir [`docs/IMAGE_ASSETS.md`](docs/IMAGE_ASSETS.md) §4 pour les 5 restants).
+**État des visuels : 16 assets — 16 définitifs, 0 placeholder.**
+Le site n'affiche que ce dont le visuel existe : produits et catégories sans
+image ont été retirés du catalogue plutôt que remplis d'un vide
+(détail dans [`docs/IMAGE_ASSETS.md`](docs/IMAGE_ASSETS.md) §4).
 
 ## Démarrer
 
@@ -40,8 +42,8 @@ src/
     site-header.tsx  site-footer.tsx
   app/
     page.tsx                     accueil
-    categories/[slug]/page.tsx   6 pages catégories (SSG)
-    products/[slug]/page.tsx     12 fiches produits (SSG)
+    categories/[slug]/page.tsx   5 pages catégories (SSG)
+    products/[slug]/page.tsx     7 fiches produits (SSG)
 public/images/         ← hero · categories · products · banners · testimonials
 scripts/               ← import, génération de placeholders, audit
 docs/IMAGE_ASSETS.md   ← inventaire, emplacements, dimensions, zones de sécurité
