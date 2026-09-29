@@ -268,10 +268,15 @@ export function getProductsByCategory(slug: string): Product[] {
   return PRODUCTS.filter((p) => p.categories.includes(slug));
 }
 
+/**
+ * Produits de la même catégorie d'abord, complétés par les plus populaires
+ * pour que la sélection soit toujours pleine.
+ */
 export function getRelatedProducts(product: Product, limit = 4): Product[] {
-  return PRODUCTS.filter(
-    (p) => p.slug !== product.slug && p.categories.some((c) => product.categories.includes(c)),
-  ).slice(0, limit);
+  const others = PRODUCTS.filter((p) => p.slug !== product.slug);
+  const sameCategory = others.filter((p) => p.categories.some((c) => product.categories.includes(c)));
+  const popular = [...others].sort((a, b) => b.reviews - a.reviews).filter((p) => !sameCategory.includes(p));
+  return [...sameCategory, ...popular].slice(0, limit);
 }
 
 export function isOnSale(product: Product): boolean {
@@ -343,8 +348,6 @@ export const SORT_OPTIONS = [
   { value: 'prix-desc', label: 'Prix décroissant' },
   { value: 'note', label: 'Meilleures notes' },
 ] as const;
-
-export type SortValue = (typeof SORT_OPTIONS)[number]['value'];
 
 export type ShopFilters = {
   query: string;

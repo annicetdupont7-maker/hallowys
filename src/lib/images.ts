@@ -235,5 +235,3 @@ export function getAsset(key: AssetKey): ImageAsset {
   return IMAGE_ASSETS[key];
 }
 
-/** Liste des chemins publics attendus — utilisée par les scripts d'audit. */
-export const EXPECTED_ASSET_PATHS: string[] = Object.values(IMAGE_ASSETS).map((a) => a.src);
