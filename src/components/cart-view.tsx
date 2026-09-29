@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { AssetImage } from '@/components/asset-image';
 import { TrashIcon } from '@/components/icons';
+import { OrderTotals } from '@/components/order-totals';
 import { QuantityStepper } from '@/components/quantity-stepper';
 import {
   FREE_SHIPPING_THRESHOLD,
@@ -17,7 +18,8 @@ import { formatPrice } from '@/lib/catalog';
 
 export function CartView() {
   const hydrated = useHydrated();
-  const { lines, count, subtotal, savings, shipping, total } = useCart();
+  const summary = useCart();
+  const { lines, subtotal } = summary;
   const [confirmClear, setConfirmClear] = useState(false);
 
   /* Avant la lecture de localStorage : réserve la place sans rien affirmer. */
@@ -45,7 +47,7 @@ export function CartView() {
   const missingForFreeShipping = FREE_SHIPPING_THRESHOLD - subtotal;
 
   return (
-    <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_22rem] lg:items-start">
+    <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
       <section aria-labelledby="cart-items-title">
         <h2 id="cart-items-title" className="sr-only">
           Articles du panier
@@ -178,34 +180,22 @@ export function CartView() {
           Récapitulatif
         </h2>
 
-        <dl className="mt-5 space-y-3 text-sm">
-          <div className="flex justify-between gap-4">
-            <dt className="text-ink-muted">
-              Sous-total ({count} {count > 1 ? 'articles' : 'article'})
-            </dt>
-            <dd className="tabular-nums text-ink">{formatPrice(subtotal)}</dd>
-          </div>
-          {savings > 0 ? (
-            <div className="flex justify-between gap-4">
-              <dt className="text-ink-muted">Dont économies</dt>
-              <dd className="tabular-nums text-pumpkin">−{formatPrice(savings)}</dd>
-            </div>
-          ) : null}
-          <div className="flex justify-between gap-4">
-            <dt className="text-ink-muted">Livraison</dt>
-            <dd className="tabular-nums text-ink">{shipping === 0 ? 'Offerte' : formatPrice(shipping)}</dd>
-          </div>
-          <div className="flex justify-between gap-4 border-t border-line/70 pt-3 text-base">
-            <dt className="font-semibold text-ink">Total TTC</dt>
-            <dd className="font-semibold tabular-nums text-ink">{formatPrice(total)}</dd>
-          </div>
-        </dl>
+        <div className="mt-5">
+          <OrderTotals summary={summary} />
+        </div>
 
         <p className="mt-5 rounded-xl bg-void/60 px-4 py-3 text-sm text-ink-muted">
           {missingForFreeShipping > 0
             ? `Plus que ${formatPrice(missingForFreeShipping)} d'achat pour profiter de la livraison offerte.`
             : 'La livraison vous est offerte.'}
         </p>
+
+        <Link
+          href="/commande"
+          className="mt-5 block rounded-full bg-pumpkin px-6 py-3.5 text-center text-sm font-semibold text-void shadow-[0_0_40px_-12px_var(--color-pumpkin)] transition-transform hover:scale-[1.01]"
+        >
+          Passer commande
+        </Link>
 
         <p className="mt-4 text-xs leading-relaxed text-ink-faint">
           Votre panier est conservé sur cet appareil : vous le retrouverez à votre prochaine

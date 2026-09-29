@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PageHeader } from '@/components/breadcrumb';
 import { ContactForm } from '@/components/contact-form';
-import { CONTACT } from '@/lib/site';
+import { CONTACT, WHATSAPP } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -19,7 +19,7 @@ export default function ContactPage() {
         intro="Une question sur un produit, une commande ou un retour ? Notre équipe vous répond sous 24 h ouvrées."
       />
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_20rem]">
+      <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
         <section
           aria-label="Formulaire de contact"
           className="rounded-card border border-line/70 bg-surface/60 p-5 sm:p-8"
@@ -35,6 +35,17 @@ export default function ContactPage() {
               className="mt-1 inline-block break-all font-medium text-pumpkin hover:text-pumpkin-soft"
             >
               {CONTACT.email}
+            </a>
+          </div>
+          <div>
+            <h2 className="text-xs uppercase tracking-wider text-ink-faint">WhatsApp</h2>
+            <a
+              href={`https://wa.me/${WHATSAPP.number}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 inline-block font-medium text-pumpkin hover:text-pumpkin-soft"
+            >
+              {WHATSAPP.display}
             </a>
           </div>
           <div>
