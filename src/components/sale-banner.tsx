@@ -34,7 +34,7 @@ export function SaleBanner() {
             </p>
             <h2
               id="promo-title"
-              className="mt-3 font-[family-name:var(--font-display)] text-3xl leading-tight text-ink sm:text-4xl lg:text-5xl"
+              className="mt-3 font-display text-3xl leading-tight text-ink sm:text-4xl lg:text-5xl"
             >
               Jusqu&apos;à −40 % sur la collection hantée
             </h2>

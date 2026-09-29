@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <div className="mx-auto flex min-h-[60svh] max-w-2xl flex-col items-center justify-center px-4 py-20 text-center">
       <p className="text-xs font-semibold uppercase tracking-[0.25em] text-pumpkin">Erreur 404</p>
-      <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl text-ink sm:text-5xl">
+      <h1 className="mt-4 font-display text-4xl text-ink sm:text-5xl">
         Cette page s&apos;est volatilisée
       </h1>
       <p className="mt-4 text-ink-muted">

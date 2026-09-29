@@ -51,14 +51,6 @@ export const CATEGORIES: Category[] = [
     image: 'category.costumes',
   },
   {
-    slug: 'accessories',
-    name: 'Accessoires',
-    tagline: 'Le détail qui fait frissonner',
-    description:
-      'Masques, bijoux gothiques et maquillage pour parfaire une apparition inoubliable.',
-    image: 'category.accessories',
-  },
-  {
     slug: 'lighting',
     name: 'Éclairage',
     tagline: "La lumière qui crée l'ombre",
@@ -129,45 +121,6 @@ export const PRODUCTS: Product[] = [
     image: 'product.witch-costume',
   },
   {
-    slug: 'pumpkin-garland',
-    name: 'Guirlande de Citrouilles',
-    price: 1990,
-    categories: ['lighting', 'decorations'],
-    shortDescription: 'Guirlande de 20 citrouilles lumineuses sur 4 mètres.',
-    description:
-      'Vingt petites citrouilles orangées réparties sur quatre mètres de fil cuivré souple. Huit modes lumineux, du fixe au scintillement lent.',
-    highlights: ['4 m · 20 citrouilles', '8 modes lumineux', 'Alimentation USB ou piles', 'Fil cuivré modelable'],
-    rating: 4.6,
-    reviews: 421,
-    image: 'product.pumpkin-garland',
-  },
-  {
-    slug: 'giant-spider-web',
-    name: "Toile d'Araignée Géante",
-    price: 1290,
-    categories: ['decorations'],
-    shortDescription: 'Toile extensible 5 m avec six araignées noires incluses.',
-    description:
-      "Une toile en fibre extensible qui se déploie jusqu'à cinq mètres pour habiller un angle de mur, une porte ou une haie. Six araignées noires sont fournies.",
-    highlights: ['Extensible jusqu’à 5 m', '6 araignées incluses', 'Réutilisable', 'Pose sans outil'],
-    rating: 4.4,
-    reviews: 158,
-    image: 'product.giant-spider-web',
-  },
-  {
-    slug: 'vampire-cape',
-    name: 'Cape de Vampire Velours',
-    price: 3990,
-    categories: ['costumes', 'accessories'],
-    shortDescription: 'Cape en velours noir, doublure rouge sang et col montant.',
-    description:
-      "Une cape en velours épais doublée de satin rouge sang, dont le col montant tient droit grâce à une armature discrète. Attache à crochet dissimulée.",
-    highlights: ['Velours doublé satin', 'Col montant armaturé', 'Longueur 140 cm', 'Taille unique adulte'],
-    rating: 4.8,
-    reviews: 96,
-    image: 'product.vampire-cape',
-  },
-  {
     slug: 'skull-lantern',
     name: 'Lanterne Crâne',
     price: 3290,
@@ -180,19 +133,6 @@ export const PRODUCTS: Product[] = [
     reviews: 134,
     badge: 'Nouveauté',
     image: 'product.skull-lantern',
-  },
-  {
-    slug: 'halloween-mask',
-    name: "Masque d'Halloween Sculpté",
-    price: 2790,
-    categories: ['accessories', 'costumes'],
-    shortDescription: 'Masque latex souple, finition peinte à la main.',
-    description:
-      "Un masque en latex souple peint à la main, dont les reliefs restent lisibles même dans la pénombre. Élastique réglable et intérieur doublé pour un port prolongé.",
-    highlights: ['Latex souple peint main', 'Élastique réglable', 'Intérieur doublé', 'Taille unique adulte'],
-    rating: 4.5,
-    reviews: 205,
-    image: 'product.halloween-mask',
   },
   {
     slug: 'ghost-decoration',
@@ -220,19 +160,6 @@ export const PRODUCTS: Product[] = [
     rating: 4.5,
     reviews: 267,
     image: 'product.halloween-candles',
-  },
-  {
-    slug: 'bat-decoration',
-    name: 'Chauves-souris 3D',
-    price: 1190,
-    categories: ['decorations'],
-    shortDescription: 'Lot de 24 chauves-souris noires en relief, repositionnables.',
-    description:
-      'Vingt-quatre chauves-souris découpées dans un carton noir mat, à ailes pliables pour un rendu en relief. Pastilles adhésives repositionnables incluses.',
-    highlights: ['Lot de 24 · 3 tailles', 'Carton noir mat', 'Ailes pliables en relief', 'Adhésifs sans trace'],
-    rating: 4.3,
-    reviews: 389,
-    image: 'product.bat-decoration',
   },
   {
     slug: 'halloween-tableware',

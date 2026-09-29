@@ -25,7 +25,7 @@ export function CategoryCard({ category, count }: { category: Category; count: n
       <div className="absolute inset-x-0 bottom-0 p-5">
         <div className="flex items-end justify-between gap-3">
           <div>
-            <h3 className="font-[family-name:var(--font-display)] text-2xl text-ink">
+            <h3 className="font-display text-2xl text-ink">
               {category.name}
             </h3>
             <p className="mt-1 text-sm text-ink-muted">{category.tagline}</p>

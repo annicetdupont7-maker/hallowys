@@ -47,7 +47,7 @@ export function Testimonials() {
         </p>
         <h2
           id="avis-title"
-          className="mt-2 font-[family-name:var(--font-display)] text-3xl text-ink sm:text-4xl"
+          className="mt-2 font-display text-3xl text-ink sm:text-4xl"
         >
           Ils ont hanté leur maison avec nous
         </h2>

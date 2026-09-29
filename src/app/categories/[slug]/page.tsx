@@ -67,7 +67,7 @@ export default async function CategoryPage({ params }: Params) {
               </ol>
             </nav>
 
-            <h1 className="mt-3 font-[family-name:var(--font-display)] text-4xl text-ink sm:text-5xl">
+            <h1 className="mt-3 font-display text-4xl text-ink sm:text-5xl">
               {category.name}
             </h1>
             <p className="mt-3 max-w-xl text-sm text-ink-muted sm:text-base">

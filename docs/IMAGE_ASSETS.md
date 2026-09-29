@@ -3,7 +3,10 @@
 Ce document est la contrepartie lisible de `src/lib/images.ts`, qui reste la
 **source unique de vérité**. Toute modification se fait d'abord dans le registre.
 
-**État au dernier import : 22 assets — 17 visuels définitifs, 5 placeholders.**
+**État : 16 assets — 16 visuels définitifs, 0 placeholder.**
+
+Le site n'affiche que ce dont le visuel existe : tout produit ou catégorie sans
+image a été retiré du catalogue plutôt que rempli d'un vide (voir §4).
 
 ---
 
@@ -16,6 +19,7 @@ Ce document est la contrepartie lisible de `src/lib/images.ts`, qui reste la
 | Aucun layout shift | `AssetImage` réserve la place via `aspect-ratio` **avant** le chargement ; les dimensions déclarées sont celles des fichiers réels. |
 | Lazy loading par défaut | `loading="lazy"` sauf le visuel LCP de chaque page. |
 | Responsive | Un `sizes` calibré par emplacement ; Next génère le `srcset` (AVIF puis WebP). |
+| Jamais de vide | Aucun placeholder, aucune grille ni catégorie vide en production. Un produit sans visuel n'entre pas dans le catalogue. |
 | Remplacement sans refonte | Placeholder et fichier final partagent chemin **et** dimensions. Déposer le fichier suffit. |
 
 ---
@@ -31,36 +35,30 @@ Ce document est la contrepartie lisible de `src/lib/images.ts`, qui reste la
 Manoir victorien hanté à droite, moitié gauche volontairement sombre : c'est là
 que se posent le titre, l'accroche et les CTA.
 
-### Catégories — 1280 × 960 (4:3) · 6/6 définitifs
+### Catégories — 1280 × 960 (4:3) · 5 définitifs
 
 | Fichier | Contenu du visuel | Emplacement |
 | --- | --- | --- |
 | `categories/decorations.webp` | Intérieur décoré : citrouilles, squelette, corbeau, lanternes | Accueil carte 1 · en-tête `/categories/decorations` |
 | `categories/costumes.webp` | Robe de sorcière sur mannequin, chapeau, miroir doré | Accueil carte 2 · `/categories/costumes` |
-| `categories/accessories.webp` | Masques ouvragés, bijoux à pierres rouges, gants, dents | Accueil carte 3 · `/categories/accessories` |
-| `categories/lighting.webp` | Lanternes, bougies, citrouilles lumineuses | Accueil carte 4 · `/categories/lighting` |
-| `categories/parties.webp` | Table dressée, vaisselle noire, candélabres | Accueil carte 5 · `/categories/parties` |
-| `categories/gifts.webp` | Coffrets noirs à rubans orange, crâne doré | Accueil carte 6 · `/categories/gifts` |
+| `categories/lighting.webp` | Lanternes, bougies, citrouilles lumineuses | Accueil carte 3 · `/categories/lighting` |
+| `categories/parties.webp` | Table dressée, vaisselle noire, candélabres | Accueil carte 4 · `/categories/parties` |
+| `categories/gifts.webp` | Coffrets noirs à rubans orange, crâne doré | Accueil carte 5 · `/categories/gifts` |
 
 Affichage : ratio `4 / 3` en carte, hauteur fixe (300 → 420 px) en bannière de
 page. `sizes` : `(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw`.
 
-### Produits — 1254 × 1254 (1:1) · 7 définitifs, 5 à fournir
+### Produits — 1254 × 1254 (1:1) · 7 définitifs
 
-| Fichier | Produit | État |
+| Fichier | Produit | Catégories |
 | --- | --- | --- |
-| `products/pumpkin-led.webp` | Citrouille LED Lumineuse | **définitif** |
-| `products/giant-skeleton.webp` | Squelette Géant 180 cm | **définitif** |
-| `products/witch-costume.webp` | Costume de Sorcière Ensorcelée | **définitif** |
-| `products/skull-lantern.webp` | Lanterne Crâne | **définitif** |
-| `products/ghost-decoration.webp` | Fantôme Suspendu | **définitif** |
-| `products/halloween-candles.webp` | Bougies d'Halloween | **définitif** |
-| `products/halloween-tableware.webp` | Vaisselle d'Halloween | **définitif** |
-| `products/pumpkin-garland.webp` | Guirlande de Citrouilles | placeholder |
-| `products/giant-spider-web.webp` | Toile d'Araignée Géante | placeholder |
-| `products/vampire-cape.webp` | Cape de Vampire Velours | placeholder |
-| `products/halloween-mask.webp` | Masque d'Halloween Sculpté | placeholder |
-| `products/bat-decoration.webp` | Chauves-souris 3D | placeholder |
+| `products/pumpkin-led.webp` | Citrouille LED Lumineuse | Décorations · Éclairage |
+| `products/giant-skeleton.webp` | Squelette Géant 180 cm | Décorations |
+| `products/witch-costume.webp` | Costume de Sorcière Ensorcelée | Costumes |
+| `products/skull-lantern.webp` | Lanterne Crâne | Éclairage · Décorations |
+| `products/ghost-decoration.webp` | Fantôme Suspendu | Décorations |
+| `products/halloween-candles.webp` | Bougies d'Halloween | Éclairage · Fêtes |
+| `products/halloween-tableware.webp` | Vaisselle d'Halloween | Fêtes · Cadeaux |
 
 Chaque visuel produit sert trois emplacements, sans duplication de fichier :
 
@@ -108,21 +106,40 @@ selon le format d'écran.
 
 ---
 
-## 4. Les 5 visuels encore à produire
+## 4. Ce qui a été retiré faute de visuel
 
-Pour rester dans l'identité HALLOWYS, générer en **carré 1:1**, fond sombre,
-lueur orange, **sans aucun texte**, sujet centré, coins hauts dégagés :
+Règle appliquée : **pas de placeholder, pas de grille vide.** Les entrées sans
+image n'existent plus dans le catalogue ni dans le registre.
 
-| Fichier à déposer | Sujet |
+### 5 produits retirés
+
+| Produit | Fichier attendu si réintégration |
 | --- | --- |
-| `public/images/products/pumpkin-garland.webp` | Guirlande de petites citrouilles orangées lumineuses sur fil cuivré, suspendue devant un mur sombre |
-| `public/images/products/giant-spider-web.webp` | Grande toile d'araignée blanche tendue dans un angle sombre, araignées noires, bougies au loin |
-| `public/images/products/vampire-cape.webp` | Cape de vampire en velours noir doublée de satin rouge, col montant, sur mannequin |
-| `public/images/products/halloween-mask.webp` | Masque d'Halloween sculpté posé sur un support, ombres marquées, fond noir |
-| `public/images/products/bat-decoration.webp` | Chauves-souris noires en relief fixées sur un mur sombre, lueur orangée rasante |
+| Guirlande de Citrouilles | `public/images/products/pumpkin-garland.webp` |
+| Toile d'Araignée Géante | `public/images/products/giant-spider-web.webp` |
+| Cape de Vampire Velours | `public/images/products/vampire-cape.webp` |
+| Masque d'Halloween Sculpté | `public/images/products/halloween-mask.webp` |
+| Chauves-souris 3D | `public/images/products/bat-decoration.webp` |
 
-Dimensions attendues : **1254 × 1254**. Après dépôt, `npm run assets:check`
-doit afficher `[FINAL]` sur chaque ligne.
+### 1 catégorie retirée
+
+**Accessoires** : ses deux seuls produits (masque, cape) étant partis, la page
+aurait été vide. Son visuel de catégorie existe pourtant — il reste dans
+`assets-source/`, et la ligne d'import est conservée en commentaire à la fin de
+`scripts/import-source-images.mjs`.
+
+### Réintégrer un produit
+
+1. Générer le visuel en **carré 1254 × 1254**, fond sombre, lueur orange,
+   **sans aucun texte**, sujet centré, coins hauts dégagés (badges promo).
+2. Le déposer au chemin ci-dessus.
+3. Ajouter l'entrée `product.<slug>` dans `src/lib/images.ts`, puis le produit
+   dans `PRODUCTS` (`src/lib/catalog.ts`).
+4. `npm run assets:check` doit afficher `[FINAL]` sur chaque ligne.
+
+Pour la catégorie Accessoires, réactiver en plus la ligne d'import commentée et
+l'entrée `CATEGORIES` — uniquement si au moins un produit accessoire a un
+visuel, sinon la page redeviendrait vide.
 
 ---
 

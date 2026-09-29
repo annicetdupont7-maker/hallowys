@@ -13,7 +13,14 @@ const REASSURANCE = [
 ];
 
 export default function HomePage() {
-  const bestSellers = PRODUCTS.slice(0, 8);
+  /**
+   * Répartition dérivée du catalogue réel, jamais d'un nombre figé : une
+   * section ne peut donc pas se retrouver vide si le catalogue change.
+   * Les mieux notés en vitrine, le reste en nouveautés.
+   */
+  const parNote = [...PRODUCTS].sort((a, b) => b.rating - a.rating);
+  const bestSellers = parNote.slice(0, Math.ceil(parNote.length / 2));
+  const nouveautes = parNote.slice(Math.ceil(parNote.length / 2));
 
   return (
     <>
@@ -41,7 +48,7 @@ export default function HomePage() {
             </p>
             <h2
               id="categories-title"
-              className="mt-2 font-[family-name:var(--font-display)] text-3xl text-ink sm:text-4xl"
+              className="mt-2 font-display text-3xl text-ink sm:text-4xl"
             >
               Explorer par univers
             </h2>
@@ -61,7 +68,8 @@ export default function HomePage() {
         </ul>
       </section>
 
-      {/* 4. PRODUITS PHARES — 8 assets product.*, lazy loading. */}
+      {/* 4. PRODUITS PHARES — les mieux notés, lazy loading. */}
+      {bestSellers.length > 0 ? (
       <section aria-labelledby="bestsellers-title" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-20">
         <header className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -70,7 +78,7 @@ export default function HomePage() {
             </p>
             <h2
               id="bestsellers-title"
-              className="mt-2 font-[family-name:var(--font-display)] text-3xl text-ink sm:text-4xl"
+              className="mt-2 font-display text-3xl text-ink sm:text-4xl"
             >
               Pièces phares de la saison
             </h2>
@@ -87,30 +95,34 @@ export default function HomePage() {
           <ProductGrid products={bestSellers} />
         </div>
       </section>
+      ) : null}
 
       {/* 5. BANNIÈRE PROMO — asset banner.sale, lazy loading. */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SaleBanner />
       </div>
 
-      {/* 6. NOUVEAUTÉS — les 4 produits restants. */}
-      <section aria-labelledby="new-title" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <header>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-pumpkin">
-            Fraîchement sorties de la crypte
-          </p>
-          <h2
-            id="new-title"
-            className="mt-2 font-[family-name:var(--font-display)] text-3xl text-ink sm:text-4xl"
-          >
-            Nouveautés
-          </h2>
-        </header>
+      {/* 6. NOUVEAUTÉS — seconde moitié du catalogue. La section disparaît
+             entièrement si elle n'a rien à montrer : jamais de grille vide. */}
+      {nouveautes.length > 0 ? (
+        <section aria-labelledby="new-title" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <header>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-pumpkin">
+              Fraîchement sorties de la crypte
+            </p>
+            <h2
+              id="new-title"
+              className="mt-2 font-display text-3xl text-ink sm:text-4xl"
+            >
+              Nouveautés
+            </h2>
+          </header>
 
-        <div className="mt-10">
-          <ProductGrid products={PRODUCTS.slice(8)} />
-        </div>
-      </section>
+          <div className="mt-10">
+            <ProductGrid products={nouveautes} />
+          </div>
+        </section>
+      ) : null}
 
       {/* 7. AVIS CLIENTS — 2 assets testimonial.*, avatars 72 px, lazy loading. */}
       <Testimonials />
@@ -120,7 +132,7 @@ export default function HomePage() {
         <div className="rounded-card border border-line/70 bg-surface/60 p-8 text-center sm:p-12">
           <h2
             id="newsletter-title"
-            className="font-[family-name:var(--font-display)] text-2xl text-ink sm:text-3xl"
+            className="font-display text-2xl text-ink sm:text-3xl"
           >
             Recevez les rituels HALLOWYS
           </h2>
