@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { AssetImage } from '@/components/asset-image';
+import { Breadcrumb } from '@/components/breadcrumb';
 import { ProductGrid } from '@/components/product-card';
 import { CATEGORIES, getCategory, getProductsByCategory } from '@/lib/catalog';
 import { getAsset } from '@/lib/images';
@@ -38,7 +39,7 @@ export default async function CategoryPage({ params }: Params) {
 
   return (
     <>
-      {/* EN-TÊTE — asset category.*, préchargé ici car c'est le LCP de la page. */}
+      {/* EN-TÊTE : asset category.*, préchargé ici car c'est le LCP de la page. */}
       <section className="relative isolate">
         <AssetImage
           asset={category.image}
@@ -53,19 +54,7 @@ export default async function CategoryPage({ params }: Params) {
 
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto w-full max-w-7xl px-4 pb-8 sm:px-6 lg:px-8 lg:pb-12">
-            <nav aria-label="Fil d'Ariane" className="text-sm text-ink-muted">
-              <ol className="flex flex-wrap items-center gap-2">
-                <li>
-                  <Link href="/" className="transition-colors hover:text-pumpkin">
-                    Accueil
-                  </Link>
-                </li>
-                <li aria-hidden>/</li>
-                <li aria-current="page" className="text-ink">
-                  {category.name}
-                </li>
-              </ol>
-            </nav>
+            <Breadcrumb items={[{ label: 'Boutique', href: '/boutique' }, { label: category.name }]} />
 
             <h1 className="mt-3 font-display text-4xl text-ink sm:text-5xl">
               {category.name}
@@ -78,17 +67,35 @@ export default async function CategoryPage({ params }: Params) {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <p className="text-sm text-ink-faint">
-          {products.length} {products.length > 1 ? 'articles' : 'article'}
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-ink-faint">
+            {products.length} {products.length > 1 ? 'articles' : 'article'}
+          </p>
+          {products.length > 0 ? (
+            <Link
+              href={`/boutique?categorie=${category.slug}`}
+              className="inline-flex min-h-10 items-center rounded-full border border-line px-4 text-sm text-ink-muted transition-colors hover:border-pumpkin/50 hover:text-pumpkin"
+            >
+              Trier et filtrer ces articles
+            </Link>
+          ) : null}
+        </div>
 
         <div className="mt-6">
           {products.length > 0 ? (
             <ProductGrid products={products} />
           ) : (
-            <p className="rounded-card border border-line/70 bg-surface/60 p-8 text-center text-sm text-ink-muted">
-              Cette collection se prépare encore dans l&apos;ombre. Revenez très vite.
-            </p>
+            <div className="rounded-card border border-line/70 bg-surface/60 p-8 text-center">
+              <p className="text-sm text-ink-muted">
+                Aucun article n&apos;est disponible dans cette catégorie pour le moment.
+              </p>
+              <Link
+                href="/boutique"
+                className="mt-6 inline-block rounded-full bg-pumpkin px-6 py-3 text-sm font-semibold text-void"
+              >
+                Voir toute la boutique
+              </Link>
+            </div>
           )}
         </div>
       </section>
@@ -98,6 +105,14 @@ export default async function CategoryPage({ params }: Params) {
           Poursuivre la visite
         </h2>
         <ul className="mt-4 flex flex-wrap gap-2">
+          <li>
+            <Link
+              href="/promotions"
+              className="block rounded-full border border-pumpkin/40 px-4 py-2 text-sm text-pumpkin transition-colors hover:bg-pumpkin/10"
+            >
+              Promotions
+            </Link>
+          </li>
           {CATEGORIES.filter((c) => c.slug !== category.slug).map((c) => (
             <li key={c.slug}>
               <Link
