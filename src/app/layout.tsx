@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
+import { getAsset } from '@/lib/images';
 import './globals.css';
 
 /**
@@ -18,6 +19,8 @@ const siteUrl =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : 'http://localhost:3000');
 
+const heroAsset = getAsset('hero.main');
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -33,6 +36,23 @@ export const metadata: Metadata = {
       "Décorations, costumes, accessoires et lumières d'Halloween réunis dans un même univers visuel.",
     type: 'website',
     locale: 'fr_FR',
+    siteName: 'HALLOWYS',
+    /* Le hero sert d'aperçu de partage : même visuel, même registre. */
+    images: [
+      {
+        url: heroAsset.src,
+        width: heroAsset.width,
+        height: heroAsset.height,
+        alt: heroAsset.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'HALLOWYS — La nuit vous va si bien',
+    description:
+      "Décorations, costumes, accessoires et lumières d'Halloween réunis dans un même univers visuel.",
+    images: [heroAsset.src],
   },
 };
 
