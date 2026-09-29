@@ -137,7 +137,7 @@ export default async function ProductPage({ params }: Params) {
               ['Expédition', 'Sous 24 h, suivi inclus'],
               ['Livraison', 'Offerte dès 49 € d’achat'],
               ['Retours', '30 jours pour changer d’avis'],
-              ['Paiement', 'Sécurisé, 3 fois sans frais dès 90 €'],
+              ['Commande', 'Validée en quelques clics sur WhatsApp'],
             ].map(([label, value]) => (
               <div key={label}>
                 <dt className="text-xs uppercase tracking-wider text-ink-faint">{label}</dt>

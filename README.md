@@ -40,12 +40,18 @@ src/
     boutique/                    recherche + filtres + tri (état dans l'URL)
     categories/[slug]/           6 catégories (SSG)
     products/[slug]/             9 fiches produits (SSG)
-    promotions/  panier/  faq/  contact/
+    promotions/  panier/  commande/  faq/  contact/
 ```
 
 Le site est 100 % frontend : panier et inscription newsletter sont conservés
 dans le `localStorage` du navigateur ; le formulaire de contact prépare un
-e-mail dans la messagerie de l'utilisateur. Aucun paiement n'est branché.
+e-mail dans la messagerie de l'utilisateur.
+
+**Commande par WhatsApp** : la page `/commande` recueille l'adresse de
+livraison puis ouvre WhatsApp avec un message pré-rempli (numéro de commande,
+articles, totaux, coordonnées) adressé à la boutique. Le numéro se règle dans
+`src/lib/site.ts` (`WHATSAPP`) ; celui livré est **fictif** (plage 06 39 98
+réservée à la fiction) et doit être remplacé par le vrai numéro.
 
 ## Règles d'images appliquées
 

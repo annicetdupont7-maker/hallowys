@@ -4,16 +4,22 @@ export type FaqItem = { id: string; question: string; answer: string };
 
 export const FAQ: FaqItem[] = [
   {
+    id: 'commander',
+    question: 'Comment passer commande ?',
+    answer:
+      "Ajoutez vos articles au panier, cliquez sur « Passer commande » puis renseignez votre adresse de livraison. En validant, WhatsApp s'ouvre avec le récapitulatif complet de votre commande : il vous suffit d'envoyer le message. Nous vous répondons pour confirmer la disponibilité et le paiement.",
+  },
+  {
     id: 'livraison-delais',
     question: 'Sous combien de temps ma commande est-elle expédiée ?',
     answer:
-      "Toute commande passée avant 14 h (du lundi au vendredi) part le jour même. Comptez ensuite 2 à 3 jours ouvrés de livraison en France métropolitaine. Un numéro de suivi vous est envoyé dès l'expédition.",
+      "Toute commande confirmée avant 14 h (du lundi au vendredi) part le jour même. Comptez ensuite 2 à 3 jours ouvrés de livraison en France métropolitaine. Un numéro de suivi vous est envoyé dès l'expédition.",
   },
   {
     id: 'livraison-frais',
     question: 'Combien coûte la livraison ?',
     answer:
-      "La livraison est offerte dès 49 € d'achat. En dessous, elle est facturée 4,90 €. Le montant exact s'affiche dans votre panier avant toute validation.",
+      "La livraison est offerte dès 49 € d'achat. En dessous, elle est facturée 4,90 €. Le montant exact s'affiche dans votre panier et dans le récapitulatif envoyé sur WhatsApp.",
   },
   {
     id: 'livraison-halloween',
@@ -35,9 +41,9 @@ export const FAQ: FaqItem[] = [
   },
   {
     id: 'paiement',
-    question: 'Quels moyens de paiement acceptez-vous ?',
+    question: 'Comment se passe le paiement ?',
     answer:
-      'Carte bancaire (CB, Visa, Mastercard), PayPal et paiement en 3 fois sans frais dès 90 € d’achat. Toutes les transactions sont chiffrées.',
+      'Après réception de votre commande sur WhatsApp, nous vous confirmons la disponibilité des articles et vous envoyons un lien de paiement sécurisé par carte bancaire. Votre colis est expédié dès le paiement reçu.',
   },
   {
     id: 'panier',
