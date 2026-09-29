@@ -38,7 +38,7 @@ export function ProductCard({ product }: { product: Product }) {
             <span />
           )}
           {product.badge ? (
-            <span className="truncate rounded-full bg-void/80 px-2 py-1 text-xs font-medium text-pumpkin backdrop-blur sm:px-2.5">
+            <span className={`${discount !== null ? 'hidden sm:block' : ''} truncate rounded-full bg-void/80 px-2 py-1 text-xs font-medium text-pumpkin backdrop-blur sm:px-2.5`}>
               {product.badge}
             </span>
           ) : null}

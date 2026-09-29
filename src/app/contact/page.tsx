@@ -27,7 +27,7 @@ export default function ContactPage() {
           <ContactForm />
         </section>
 
-        <aside className="space-y-6 rounded-card border border-line/70 bg-surface/60 p-5 text-sm sm:p-8">
+        <aside className="space-y-6 self-start rounded-card border border-line/70 bg-surface/60 p-5 text-sm sm:p-8">
           <div>
             <h2 className="text-xs uppercase tracking-wider text-ink-faint">E-mail</h2>
             <a
