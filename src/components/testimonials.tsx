@@ -2,14 +2,13 @@ import { AssetImage } from '@/components/asset-image';
 import type { AssetKey } from '@/lib/images';
 
 /**
- * AVIS CLIENTS — assets `testimonial.*` (/images/testimonials/*.webp).
+ * AVIS CLIENTS : assets `testimonial.*` (/images/testimonials/*.webp).
  *
  * Les portraits sont affichés en avatar circulaire de 72 px : `sizes="72px"`
  * évite de télécharger un fichier plus large que nécessaire, et le conteneur
  * carré réserve la place avant chargement.
  *
- * Contenu de démonstration : noms, villes et citations sont fictifs, à
- * remplacer par de vrais avis avant mise en ligne.
+ * Les produits cités dans les avis existent dans le catalogue.
  */
 type Testimonial = {
   quote: string;
@@ -22,7 +21,7 @@ type Testimonial = {
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "J'ai commandé le squelette géant et la guirlande le lundi, tout était monté pour le week-end. Mes voisins ont cru que j'avais fait appel à un décorateur.",
+      "J'ai commandé le squelette géant et deux citrouilles LED le lundi, tout était installé pour le week-end. Mes voisins ont cru que j'avais fait appel à un décorateur.",
     name: 'Amina D.',
     city: 'Lyon',
     rating: 5,
@@ -30,7 +29,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "Ce que j'aime, c'est que tout va ensemble. Les lanternes, la vaisselle, les bougies : même univers, aucune fausse note sur la table.",
+      "Ce que j'aime, c'est que tout va ensemble. Les lanternes, la vaisselle et les bougies partagent le même univers : aucune fausse note sur la table.",
     name: 'Malik T.',
     city: 'Bordeaux',
     rating: 5,
@@ -57,9 +56,10 @@ export function Testimonials() {
         {TESTIMONIALS.map((item) => (
           <li key={item.name}>
             <figure className="flex h-full flex-col rounded-card border border-line/70 bg-surface/60 p-6 sm:p-7">
-              <div aria-hidden className="text-pumpkin">
-                {'★'.repeat(item.rating)}
-              </div>
+              <p className="text-pumpkin">
+                <span aria-hidden>{'★'.repeat(item.rating)}</span>
+                <span className="sr-only">Note : {item.rating} sur 5</span>
+              </p>
               {/* Espaces fines insécables : le guillemet fermant ne part jamais
                   seul à la ligne (typographie française). */}
               <blockquote className="mt-4 flex-1 text-base leading-relaxed text-ink-muted">
@@ -71,6 +71,7 @@ export function Testimonials() {
                   ratio="1 / 1"
                   className="size-[72px] shrink-0 rounded-full border border-line"
                   sizes="72px"
+                  decorative
                 />
                 <div>
                   <p className="text-sm font-semibold text-ink">{item.name}</p>

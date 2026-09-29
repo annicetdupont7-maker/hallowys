@@ -1,40 +1,53 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/lib/catalog';
+import { CONTACT } from '@/lib/site';
 
-const SERVICE_LINKS = [
-  'Livraison & retours',
-  'Suivi de commande',
-  'Guide des tailles',
-  'Nous contacter',
+const SHOP_LINKS = [
+  { href: '/boutique', label: 'Toute la boutique' },
+  { href: '/promotions', label: 'Promotions' },
+  ...CATEGORIES.map((category) => ({ href: `/categories/${category.slug}`, label: category.name })),
 ];
 
-const ABOUT_LINKS = ['Notre histoire', 'Ateliers créatifs', 'Espace presse', 'Mentions légales'];
+const SERVICE_LINKS = [
+  { href: '/faq#livraison-delais', label: 'Livraison' },
+  { href: '/faq#retours', label: 'Retours et remboursements' },
+  { href: '/faq#tailles', label: 'Guide des tailles' },
+  { href: '/faq', label: 'Questions fréquentes' },
+  { href: '/contact', label: 'Nous contacter' },
+  { href: '/panier', label: 'Mon panier' },
+];
+
+const linkClass = 'text-ink-muted transition-colors hover:text-pumpkin';
 
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-line/70 bg-surface/60">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-4">
-          <div>
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+          <div className="sm:col-span-2 md:col-span-2">
             <p className="text-lg font-semibold tracking-[0.22em] text-ink">HALLOWYS</p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink-muted">
               Décors, costumes et lumières pour faire de chaque 31 octobre une nuit dont on
               reparle encore en novembre.
             </p>
+            <p className="mt-5 text-sm text-ink-muted">
+              <a href={`mailto:${CONTACT.email}`} className="font-medium text-pumpkin hover:text-pumpkin-soft">
+                {CONTACT.email}
+              </a>
+              <br />
+              <span className="text-ink-faint">{CONTACT.hours}</span>
+            </p>
           </div>
 
-          <nav aria-labelledby="footer-categories">
-            <h2 id="footer-categories" className="text-sm font-semibold uppercase tracking-wider text-ink">
-              Catégories
+          <nav aria-labelledby="footer-shop">
+            <h2 id="footer-shop" className="text-sm font-semibold uppercase tracking-wider text-ink">
+              Boutique
             </h2>
             <ul className="mt-4 space-y-2.5 text-sm">
-              {CATEGORIES.map((category) => (
-                <li key={category.slug}>
-                  <Link
-                    href={`/categories/${category.slug}`}
-                    className="text-ink-muted transition-colors hover:text-pumpkin"
-                  >
-                    {category.name}
+              {SHOP_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className={linkClass}>
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -46,22 +59,11 @@ export function SiteFooter() {
               Service client
             </h2>
             <ul className="mt-4 space-y-2.5 text-sm">
-              {SERVICE_LINKS.map((label) => (
-                <li key={label}>
-                  <span className="text-ink-muted">{label}</span>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <nav aria-labelledby="footer-about">
-            <h2 id="footer-about" className="text-sm font-semibold uppercase tracking-wider text-ink">
-              La maison
-            </h2>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              {ABOUT_LINKS.map((label) => (
-                <li key={label}>
-                  <span className="text-ink-muted">{label}</span>
+              {SERVICE_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className={linkClass}>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

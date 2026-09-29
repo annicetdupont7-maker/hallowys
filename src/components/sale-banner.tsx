@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import { AssetImage } from '@/components/asset-image';
+import { getPromotions, maxDiscountPercent } from '@/lib/catalog';
 
 /**
- * BANNIÈRE PROMO — asset `banner.sale` (/images/banners/halloween-sale.webp).
+ * BANNIÈRE PROMO : asset `banner.sale` (/images/banners/halloween-sale.webp).
  *
- * L'image ne fournit que l'ambiance. Le pourcentage, le code promo, la date de
- * fin et le CTA sont du HTML : la même image sert donc à toutes les opérations
- * commerciales, sans jamais être régénérée.
+ * L'image ne fournit que l'ambiance. Le pourcentage est calculé depuis le
+ * catalogue : l'accroche reste donc toujours fidèle aux remises réelles.
  */
 export function SaleBanner() {
+  const promotions = getPromotions();
+  if (promotions.length === 0) return null;
+
   return (
     <section
-      id="promotions"
       aria-labelledby="promo-title"
       className="relative isolate overflow-hidden rounded-card border border-pumpkin/25"
     >
@@ -36,18 +38,17 @@ export function SaleBanner() {
               id="promo-title"
               className="mt-3 font-display text-3xl leading-tight text-ink sm:text-4xl lg:text-5xl"
             >
-              Jusqu&apos;à −40 % sur la collection hantée
+              Jusqu&apos;à −{maxDiscountPercent()} % sur la collection hantée
             </h2>
             <p className="mt-3 text-sm text-ink-muted sm:text-base">
-              Du 20 au 31 octobre, avec le code{' '}
-              <span className="rounded bg-surface-3 px-1.5 py-0.5 font-mono text-ink">HALLOWYS40</span>{' '}
-              — cumulable avec la livraison offerte dès 49 €.
+              {promotions.length} {promotions.length > 1 ? 'pièces' : 'pièce'} à prix réduit jusqu&apos;au 31 octobre, remise déjà
+              appliquée. Livraison offerte dès 49 € d&apos;achat.
             </p>
             <Link
-              href="/categories/decorations"
+              href="/promotions"
               className="mt-7 inline-block rounded-full bg-pumpkin px-6 py-3 text-sm font-semibold text-void shadow-[0_0_40px_-12px_var(--color-pumpkin)] transition-transform hover:scale-[1.02]"
             >
-              Profiter des offres
+              Voir les promotions
             </Link>
           </div>
         </div>

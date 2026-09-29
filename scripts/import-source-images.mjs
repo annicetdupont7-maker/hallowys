@@ -6,8 +6,9 @@
  * Convertit les fichiers fournis dans `assets-source/GENERATION_IMAGE` en .webp
  * et les dépose aux chemins exacts attendus par le registre (`src/lib/images.ts`).
  *
- * Aucune image n'est recadrée ni redimensionnée : les ratios des sources
- * correspondent déjà aux emplacements prévus (16:9 hero, 4:3 catégories,
+ * Aucune image n'est redimensionnée. Seuls les visuels produits Accessoires
+ * sont des recadrages carrés (troisième colonne de MAPPING) du visuel de
+ * catégorie. Les autres ratios correspondent déjà aux emplacements prévus (16:9 hero, 4:3 catégories,
  * 1:1 produits et portraits, 3.2:1 bannière). Les dimensions déclarées dans le
  * registre ont été alignées sur celles des fichiers réels, ce qui évite tout
  * ré-échantillonnage et tout layout shift.
@@ -42,6 +43,7 @@ const MAPPING = [
   ['WhatsApp Image 2026-09-29 at 20.57.51 (1).jpeg', 'images/categories/lighting.webp'],
   ['WhatsApp Image 2026-09-29 at 20.57.52.jpeg', 'images/categories/parties.webp'],
   ['WhatsApp Image 2026-09-29 at 20.57.52 (1).jpeg', 'images/categories/gifts.webp'],
+  ['WhatsApp Image 2026-09-29 at 20.57.51.jpeg', 'images/categories/accessories.webp'],
 
   // --- Produits (1:1)
   ['WhatsApp Image 2026-09-29 at 20.57.52 (2).jpeg', 'images/products/pumpkin-led.webp'],
@@ -52,6 +54,19 @@ const MAPPING = [
   ['WhatsApp Image 2026-09-29 at 20.57.55.jpeg', 'images/products/skull-lantern.webp'],
   ['WhatsApp Image 2026-09-29 at 20.57.55 (1).jpeg', 'images/products/halloween-candles.webp'],
 
+  // --- Produits accessoires : recadrages carrés du visuel de catégorie
+  //     Accessoires (1280x960), un masque centré par fichier.
+  [
+    'WhatsApp Image 2026-09-29 at 20.57.51.jpeg',
+    'images/products/vampire-mask.webp',
+    { left: 600, top: 110, width: 500, height: 500 },
+  ],
+  [
+    'WhatsApp Image 2026-09-29 at 20.57.51.jpeg',
+    'images/products/feather-mask.webp',
+    { left: 250, top: 0, width: 500, height: 500 },
+  ],
+
   // --- Bannière promotionnelle (3.2:1), sujet à droite, gauche libre
   ['WhatsApp Image 2026-09-29 at 20.57.53 (3).jpeg', 'images/banners/halloween-sale.webp'],
 
@@ -59,20 +74,6 @@ const MAPPING = [
   ['WhatsApp Image 2026-09-29 at 20.57.54.jpeg', 'images/testimonials/portrait-1.webp'],
   ['WhatsApp Image 2026-09-29 at 20.57.54 (1).jpeg', 'images/testimonials/portrait-2.webp'],
 ];
-
-/**
- * EN RÉSERVE — visuel disponible mais volontairement non importé.
- *
- * La catégorie « Accessoires » a été retirée du catalogue : aucun produit
- * accessoire ne dispose d'un visuel, la page aurait donc été vide. Son image
- * de catégorie reste disponible dans `assets-source/`.
- *
- * Pour la réactiver : déplacer la ligne ci-dessous dans MAPPING, remettre
- * l'entrée `category.accessories` dans `src/lib/images.ts`, et la catégorie
- * dans `CATEGORIES` (`src/lib/catalog.ts`) — avec au moins un produit.
- *
- *   ['WhatsApp Image 2026-09-29 at 20.57.51.jpeg', 'images/categories/accessories.webp'],
- */
 
 async function main() {
   if (!existsSync(SOURCE_DIR)) {
@@ -83,7 +84,7 @@ async function main() {
   let imported = 0;
   console.log('');
 
-  for (const [sourceName, publicPath] of MAPPING) {
+  for (const [sourceName, publicPath, crop] of MAPPING) {
     const source = path.join(SOURCE_DIR, sourceName);
     if (!existsSync(source)) {
       console.log(`  [ABSENT]  ${sourceName}`);
@@ -94,8 +95,9 @@ async function main() {
     await mkdir(path.dirname(target), { recursive: true });
 
     const input = await readFile(source);
-    const { width, height } = await sharp(input).metadata();
-    const output = await sharp(input).webp({ quality: WEBP_QUALITY, effort: 6 }).toBuffer();
+    const image = crop ? sharp(input).extract(crop) : sharp(input);
+    const { width, height } = crop ?? (await sharp(input).metadata());
+    const output = await image.webp({ quality: WEBP_QUALITY, effort: 6 }).toBuffer();
     await writeFile(target, output);
 
     const saved = Math.round((1 - output.length / input.length) * 100);

@@ -10,12 +10,20 @@ export default function NotFound() {
       <p className="mt-4 text-ink-muted">
         Le lien que vous suivez mène à une pièce vide. Revenez vers la lumière.
       </p>
-      <Link
-        href="/"
-        className="mt-8 rounded-full bg-pumpkin px-6 py-3 text-sm font-semibold text-void transition-transform hover:scale-[1.02]"
-      >
-        Retour à l&apos;accueil
-      </Link>
+      <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <Link
+          href="/"
+          className="rounded-full bg-pumpkin px-6 py-3 text-sm font-semibold text-void transition-transform hover:scale-[1.02]"
+        >
+          Retour à l&apos;accueil
+        </Link>
+        <Link
+          href="/boutique"
+          className="rounded-full border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-pumpkin/50 hover:text-pumpkin"
+        >
+          Voir la boutique
+        </Link>
+      </div>
     </div>
   );
 }
