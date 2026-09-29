@@ -3,7 +3,11 @@
 Ce document est la contrepartie lisible de `src/lib/images.ts`, qui reste la
 **source unique de vérité**. Toute modification se fait d'abord dans le registre.
 
-**État : 16 assets — 16 visuels définitifs, 0 placeholder.**
+**État : 19 assets, tous définitifs.**
+
+Mise à jour : la catégorie **Accessoires** est réintégrée avec deux produits
+(`vampire-mask`, `feather-mask`) dont les visuels 500 × 500 sont des recadrages
+carrés du visuel de catégorie (voir `scripts/import-source-images.mjs`).
 
 Le site n'affiche que ce dont le visuel existe : tout produit ou catégorie sans
 image a été retiré du catalogue plutôt que rempli d'un vide (voir §4).

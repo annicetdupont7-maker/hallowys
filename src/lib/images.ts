@@ -42,6 +42,8 @@ export const ASSET_RATIOS = {
   hero: { width: 1280, height: 720 }, // 16:9
   category: { width: 1280, height: 960 }, // 4:3
   product: { width: 1254, height: 1254 }, // 1:1
+  /** Recadrages carrés du visuel de catégorie Accessoires. */
+  productCrop: { width: 500, height: 500 }, // 1:1
   banner: { width: 1280, height: 400 }, // 16:5
   portrait: { width: 1254, height: 1254 }, // 1:1
 } as const;
@@ -53,11 +55,10 @@ export const ASSET_RATIOS = {
  */
 export const DARK_BLUR =
   'data:image/svg+xml;base64,' +
-  Buffer.from(
-    '<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8">' +
-      '<rect width="8" height="8" fill="#150a1f"/>' +
-      '<circle cx="4" cy="5" r="3" fill="#2d1440"/></svg>',
-  ).toString('base64');
+  /* <svg 8x8><rect fill="#150a1f"/><circle cx="4" cy="5" r="3" fill="#2d1440"/></svg>
+     encodé en dur : le registre est aussi importé côté navigateur, où
+     `Buffer` n'existe pas. */
+  'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjgiIGZpbGw9IiMxNTBhMWYiLz48Y2lyY2xlIGN4PSI0IiBjeT0iNSIgcj0iMyIgZmlsbD0iIzJkMTQ0MCIvPjwvc3ZnPg==';
 
 const GRID_CATEGORY_SIZES = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw';
 const GRID_PRODUCT_SIZES = '(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw';
@@ -69,7 +70,7 @@ export const IMAGE_ASSETS = {
     ...ASSET_RATIOS.hero,
     alt: "Nuit d'Halloween : citrouilles sculptées illuminées et lanternes devant un manoir victorien hanté, pavés humides et brume sous la pleine lune",
     sizes: '100vw',
-    placement: 'Accueil — visuel plein écran de la section Hero (au-dessus de la ligne de flottaison)',
+    placement: 'Accueil, visuel plein écran de la section Hero (au-dessus de la ligne de flottaison)',
     priority: true,
   },
 
@@ -79,7 +80,7 @@ export const IMAGE_ASSETS = {
     ...ASSET_RATIOS.category,
     alt: "Décorations d'Halloween : citrouilles, toiles d'araignée et crânes disposés dans un salon sombre",
     sizes: GRID_CATEGORY_SIZES,
-    placement: 'Accueil — grille Catégories (carte 1) · En-tête de /categories/decorations',
+    placement: 'Accueil, grille Catégories (carte 1) · En-tête de /categories/decorations',
     priority: false,
   },
   'category.costumes': {
@@ -87,7 +88,15 @@ export const IMAGE_ASSETS = {
     ...ASSET_RATIOS.category,
     alt: "Robe de sorcière noire en dentelle présentée sur un mannequin, chapeau pointu et grand miroir doré dans une pièce éclairée aux bougies",
     sizes: GRID_CATEGORY_SIZES,
-    placement: 'Accueil — grille Catégories (carte 2) · En-tête de /categories/costumes',
+    placement: 'Accueil, grille Catégories (carte 2) · En-tête de /categories/costumes',
+    priority: false,
+  },
+  'category.accessories': {
+    src: '/images/categories/accessories.webp',
+    ...ASSET_RATIOS.category,
+    alt: "Accessoires d'Halloween : masques vénitiens, dentier de vampire, colliers gothiques et gants de dentelle sur une table éclairée aux bougies",
+    sizes: GRID_CATEGORY_SIZES,
+    placement: 'Accueil, grille Catégories (carte 3) · En-tête de /categories/accessories',
     priority: false,
   },
   'category.lighting': {
@@ -95,7 +104,7 @@ export const IMAGE_ASSETS = {
     ...ASSET_RATIOS.category,
     alt: "Éclairage d'Halloween : guirlandes orangées, lanternes et bougies illuminant une pièce obscure",
     sizes: GRID_CATEGORY_SIZES,
-    placement: 'Accueil — grille Catégories (carte 4) · En-tête de /categories/lighting',
+    placement: 'Accueil, grille Catégories (carte 4) · En-tête de /categories/lighting',
     priority: false,
   },
   'category.parties': {
@@ -103,7 +112,7 @@ export const IMAGE_ASSETS = {
     ...ASSET_RATIOS.category,
     alt: "Table de fête d'Halloween dressée avec vaisselle noire, bougies et décor de citrouilles",
     sizes: GRID_CATEGORY_SIZES,
-    placement: 'Accueil — grille Catégories (carte 5) · En-tête de /categories/parties',
+    placement: 'Accueil, grille Catégories (carte 5) · En-tête de /categories/parties',
     priority: false,
   },
   'category.gifts': {
@@ -111,7 +120,7 @@ export const IMAGE_ASSETS = {
     ...ASSET_RATIOS.category,
     alt: "Coffrets cadeaux d'Halloween emballés de noir et d'orange, rubans et étiquettes sombres",
     sizes: GRID_CATEGORY_SIZES,
-    placement: 'Accueil — grille Catégories (carte 6) · En-tête de /categories/gifts',
+    placement: 'Accueil, grille Catégories (carte 6) · En-tête de /categories/gifts',
     priority: false,
   },
 
@@ -173,13 +182,30 @@ export const IMAGE_ASSETS = {
     priority: false,
   },
 
+  'product.vampire-mask': {
+    src: '/images/products/vampire-mask.webp',
+    ...ASSET_RATIOS.productCrop,
+    alt: 'Masque de vampire ivoire à filigranes dorés, crocs et coulures rouges, posé sur un support noir',
+    sizes: GRID_PRODUCT_SIZES,
+    placement: 'Grilles produits (accueil, catégorie, recherche) · Visuel principal de la fiche produit',
+    priority: false,
+  },
+  'product.feather-mask': {
+    src: '/images/products/feather-mask.webp',
+    ...ASSET_RATIOS.productCrop,
+    alt: 'Masque vénitien en dentelle métallique dorée, orné de plumes noires et de roses pourpres',
+    sizes: GRID_PRODUCT_SIZES,
+    placement: 'Grilles produits (accueil, catégorie, recherche) · Visuel principal de la fiche produit',
+    priority: false,
+  },
+
   /* ------------------------------------------------------------ BANNIÈRE -- */
   'banner.sale': {
     src: '/images/banners/halloween-sale.webp',
     ...ASSET_RATIOS.banner,
     alt: "Manoir hanté sous une lune orangée, citrouilles illuminées et chauves-souris dans un ciel de nuit",
     sizes: '(max-width: 1280px) 100vw, 1280px',
-    placement: 'Accueil — bannière promotionnelle pleine largeur, sous la grille produits',
+    placement: 'Accueil, bannière promotionnelle pleine largeur, sous la grille produits',
     priority: false,
   },
 
@@ -189,7 +215,7 @@ export const IMAGE_ASSETS = {
     ...ASSET_RATIOS.portrait,
     alt: 'Portrait souriant d’une cliente HALLOWYS sur fond orangé',
     sizes: '72px',
-    placement: 'Accueil — section Avis clients, avatar circulaire de la carte 1',
+    placement: 'Accueil, section Avis clients, avatar circulaire de la carte 1',
     priority: false,
   },
   'testimonial.2': {
@@ -197,7 +223,7 @@ export const IMAGE_ASSETS = {
     ...ASSET_RATIOS.portrait,
     alt: 'Portrait souriant d’un client HALLOWYS sur fond orangé',
     sizes: '72px',
-    placement: 'Accueil — section Avis clients, avatar circulaire de la carte 2',
+    placement: 'Accueil, section Avis clients, avatar circulaire de la carte 2',
     priority: false,
   },
 } as const satisfies Record<string, ImageAsset>;

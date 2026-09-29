@@ -1,14 +1,15 @@
 import type { Metadata, Viewport } from 'next';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
+import { CartToast } from '@/components/cart-toast';
 import { getAsset } from '@/lib/images';
 import './globals.css';
 
 /**
  * URL absolue du site, utilisée par `metadataBase` pour résoudre les images
  * Open Graph. Ordre de priorité :
- *   1. NEXT_PUBLIC_SITE_URL — domaine définitif, à définir une fois en ligne ;
- *   2. VERCEL_PROJECT_PRODUCTION_URL — domaine de production Vercel, injecté
+ *   1. NEXT_PUBLIC_SITE_URL : domaine définitif, à définir une fois en ligne ;
+ *   2. VERCEL_PROJECT_PRODUCTION_URL : domaine de production Vercel, injecté
  *      automatiquement : les aperçus de partage sont donc corrects dès le
  *      premier déploiement, sans configuration ;
  *   3. localhost en développement.
@@ -24,14 +25,14 @@ const heroAsset = getAsset('hero.main');
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'HALLOWYS — Décorations, costumes et lumières d’Halloween',
+    default: 'HALLOWYS : décorations, costumes et lumières d’Halloween',
     template: '%s · HALLOWYS',
   },
   description:
     "HALLOWYS habille votre nuit d'Halloween : décorations, costumes, accessoires, éclairages et art de la table, réunis dans un même univers visuel.",
   applicationName: 'HALLOWYS',
   openGraph: {
-    title: 'HALLOWYS — La nuit vous va si bien',
+    title: 'HALLOWYS, la nuit vous va si bien',
     description:
       "Décorations, costumes, accessoires et lumières d'Halloween réunis dans un même univers visuel.",
     type: 'website',
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'HALLOWYS — La nuit vous va si bien',
+    title: 'HALLOWYS, la nuit vous va si bien',
     description:
       "Décorations, costumes, accessoires et lumières d'Halloween réunis dans un même univers visuel.",
     images: [heroAsset.src],
@@ -74,6 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main id="contenu">{children}</main>
         <SiteFooter />
+        <CartToast />
       </body>
     </html>
   );
