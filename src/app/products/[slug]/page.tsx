@@ -155,7 +155,7 @@ export default async function ProductPage({ params }: Params) {
               id="related-title"
               className="font-display text-2xl text-ink sm:text-3xl"
             >
-              Dans le même décor
+              Vous aimerez aussi
             </h2>
             <Link
               href="/boutique"
