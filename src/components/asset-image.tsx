@@ -77,35 +77,3 @@ export function AssetImage({
     </div>
   );
 }
-
-/**
- * Variante « intrinsèque » : l'image occupe ses dimensions réelles, sans
- * recadrage ni conteneur en ratio forcé. Utile pour un visuel isolé qui doit
- * conserver sa proportion exacte (fiche produit en pleine largeur, par ex.).
- */
-export function AssetImageIntrinsic({
-  asset,
-  className = '',
-  priority,
-  sizes,
-  decorative = false,
-}: Omit<AssetImageProps, 'ratio' | 'imageClassName'>) {
-  const a = getAsset(asset);
-  const isPriority = priority ?? a.priority;
-
-  return (
-    <Image
-      src={a.src}
-      alt={decorative ? '' : a.alt}
-      aria-hidden={decorative || undefined}
-      width={a.width}
-      height={a.height}
-      sizes={sizes ?? a.sizes}
-      priority={isPriority}
-      loading={isPriority ? undefined : 'lazy'}
-      placeholder="blur"
-      blurDataURL={DARK_BLUR}
-      className={`h-auto w-full ${className}`}
-    />
-  );
-}

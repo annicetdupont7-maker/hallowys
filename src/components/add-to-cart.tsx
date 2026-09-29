@@ -78,7 +78,7 @@ export function AddToCartForm({ product }: { product: Product }) {
                   }}
                   className="peer sr-only"
                 />
-                <span className="grid h-11 min-w-12 place-items-center rounded-full border border-line px-4 text-sm text-ink-muted transition-colors peer-checked:border-pumpkin peer-checked:bg-pumpkin/10 peer-checked:text-pumpkin peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-pumpkin hover:border-pumpkin/50">
+                <span className="grid h-11 min-w-11 place-items-center rounded-full border border-line px-3 sm:min-w-12 sm:px-4 text-sm text-ink-muted transition-colors peer-checked:border-pumpkin peer-checked:bg-pumpkin/10 peer-checked:text-pumpkin peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-pumpkin hover:border-pumpkin/50">
                   {value}
                 </span>
               </label>
@@ -146,7 +146,9 @@ export function QuickAddButton({ product }: { product: Product }) {
   if (product.stock === 0) {
     return (
       <span className={`${className} border border-line text-ink-faint`}>
-        Rupture<span className="hidden sm:inline">&nbsp;de stock</span>
+        <span>
+          Rupture<span className="hidden sm:inline"> de stock</span>
+        </span>
       </span>
     );
   }
@@ -158,7 +160,9 @@ export function QuickAddButton({ product }: { product: Product }) {
         aria-label={`Choisir une ${product.options.name.toLowerCase()} pour ${product.name}`}
         className={`${className} border border-pumpkin/50 text-pumpkin hover:bg-pumpkin/10`}
       >
-        Choisir<span className="hidden sm:inline">&nbsp;une {product.options.name.toLowerCase()}</span>
+        <span>
+          Choisir<span className="hidden sm:inline"> une {product.options.name.toLowerCase()}</span>
+        </span>
       </Link>
     );
   }
@@ -182,9 +186,9 @@ export function QuickAddButton({ product }: { product: Product }) {
       ) : soldOut ? (
         'Stock atteint'
       ) : (
-        <>
-          Ajouter<span className="hidden sm:inline">&nbsp;au panier</span>
-        </>
+        <span>
+          Ajouter<span className="hidden sm:inline"> au panier</span>
+        </span>
       )}
     </button>
   );

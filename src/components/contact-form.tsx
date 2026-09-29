@@ -57,6 +57,7 @@ export function ContactForm() {
           <input
             id="contact-name"
             autoComplete="name"
+            placeholder="Prénom et nom"
             aria-invalid={Boolean(errors.name)}
             aria-describedby={errors.name ? 'contact-name-error' : undefined}
             className={inputClass}
@@ -76,6 +77,7 @@ export function ContactForm() {
             id="contact-email"
             type="email"
             autoComplete="email"
+            placeholder="vous@domaine.fr"
             aria-invalid={Boolean(errors.email)}
             aria-describedby={errors.email ? 'contact-email-error' : undefined}
             className={inputClass}
@@ -107,6 +109,7 @@ export function ContactForm() {
         <textarea
           id="contact-message"
           rows={6}
+          placeholder="Précisez le produit ou le numéro de commande concerné."
           aria-invalid={Boolean(errors.message)}
           aria-describedby={errors.message ? 'contact-message-error' : undefined}
           className={inputClass}
