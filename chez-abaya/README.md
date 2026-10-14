@@ -5,17 +5,15 @@ accessoires à Cotonou. Les clientes parcourent le catalogue, voient les prix,
 choisissent couleur et taille, puis **commandent sur WhatsApp** avec un message
 pré-rempli. Pas de backend, pas de base de données, pas de paiement en ligne.
 
-Stack : Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS 4 — la même
-que le reste du dépôt. Polices auto-hébergées (Fontsource), aucune dépendance
+Stack : Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS 4. Polices auto-hébergées (Fontsource), aucune dépendance
 réseau au build.
 
 ## Démarrer
 
 ```bash
-cd chez-abaya
 npm install
 npm run dev        # http://localhost:3000
-npm run build      # build de production
+npm run build      # build de production (site statique dans out/)
 npm run typecheck
 ```
 
@@ -74,16 +72,14 @@ que la conversation s'ouvre bien avec la vendeuse et que le message est complet.
 
 ## Déployer sur Vercel
 
-Le site est exporté en **HTML statique** (`chez-abaya/out/`), sans serveur.
+1. Sur vercel.com : **Add New → Project**, importer ce dépôt.
+2. Laisser les réglages par défaut (Next.js détecté) et cliquer sur **Deploy**.
+3. Vérifier que le lien est public : ouvrir le site en navigation privée. Si
+   Vercel demande de se connecter : Settings → Deployment Protection →
+   désactiver « Vercel Authentication ».
 
-**Sur cette branche**, le fichier `vercel.json` à la racine du dépôt indique à
-Vercel de construire `chez-abaya/` au lieu de l'application Halloween : chaque
-push sur la branche produit un aperçu de Chez Abaya. ⚠️ Ne pas fusionner ce
-`vercel.json` dans `main`, sinon le site Halloween serait remplacé.
-
-**Pour un site définitif**, créer plutôt un projet Vercel dédié à partir de ce
-dépôt avec **Root Directory = `chez-abaya`** (le `vercel.json` racine n'est alors
-pas utilisé). Aucune variable d'environnement n'est obligatoire : l'adresse du
-site est déduite de Vercel. Avec un nom de domaine personnel, définir
+Le site est exporté en **HTML statique** (dossier `out/`), sans serveur.
+Aucune variable d'environnement n'est obligatoire : l'adresse du site est
+déduite de Vercel. Avec un nom de domaine personnel, définir
 `NEXT_PUBLIC_SITE_URL` (ex. `https://chezabaya.bj`) pour que les aperçus de
 lien et le sitemap l'utilisent.
