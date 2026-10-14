@@ -51,3 +51,5 @@ export default async function OpengraphImage() {
     { ...size, fonts: [{ name: 'Cormorant', data: serif, weight: 500, style: 'normal' }] },
   );
 }
+
+export const dynamic = 'force-static';

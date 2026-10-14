@@ -9,3 +9,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...PRODUCTS.map((p) => ({ url: `${SITE_URL}/produit/${p.slug}`, priority: 0.7 })),
   ];
 }
+
+export const dynamic = 'force-static';

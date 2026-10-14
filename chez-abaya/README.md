@@ -74,9 +74,16 @@ que la conversation s'ouvre bien avec la vendeuse et que le message est complet.
 
 ## Déployer sur Vercel
 
-Le dépôt contient aussi une autre application à la racine : dans Vercel, créer
-un projet à partir de ce dépôt et régler **Root Directory = `chez-abaya`**.
-Framework détecté automatiquement (Next.js). Aucune variable d'environnement
-n'est obligatoire : l'adresse du site est déduite du domaine Vercel. Avec un nom
-de domaine personnel, définir `NEXT_PUBLIC_SITE_URL` (ex. `https://chezabaya.bj`)
-pour que les aperçus de lien et le sitemap l'utilisent.
+Le site est exporté en **HTML statique** (`chez-abaya/out/`), sans serveur.
+
+**Sur cette branche**, le fichier `vercel.json` à la racine du dépôt indique à
+Vercel de construire `chez-abaya/` au lieu de l'application Halloween : chaque
+push sur la branche produit un aperçu de Chez Abaya. ⚠️ Ne pas fusionner ce
+`vercel.json` dans `main`, sinon le site Halloween serait remplacé.
+
+**Pour un site définitif**, créer plutôt un projet Vercel dédié à partir de ce
+dépôt avec **Root Directory = `chez-abaya`** (le `vercel.json` racine n'est alors
+pas utilisé). Aucune variable d'environnement n'est obligatoire : l'adresse du
+site est déduite de Vercel. Avec un nom de domaine personnel, définir
+`NEXT_PUBLIC_SITE_URL` (ex. `https://chezabaya.bj`) pour que les aperçus de
+lien et le sitemap l'utilisent.
