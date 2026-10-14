@@ -94,3 +94,23 @@ export function InstagramIcon({ className = 'size-5' }: IconProps) {
     </svg>
   );
 }
+
+export function ShareIcon({ className = 'size-4' }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <circle cx="18" cy="5.5" r="2.5" />
+      <circle cx="6" cy="12" r="2.5" />
+      <circle cx="18" cy="18.5" r="2.5" />
+      <path d="M8.2 10.8l7.6-4.1M8.2 13.2l7.6 4.1" />
+    </svg>
+  );
+}
+
+export function RulerIcon({ className = 'size-4' }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} {...stroke}>
+      <path d="M3 15.5L15.5 3 21 8.5 8.5 21z" />
+      <path d="M7 11.5l2 2M10 8.5l2 2M13 5.5l2 2" />
+    </svg>
+  );
+}

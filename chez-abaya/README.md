@@ -25,7 +25,12 @@ npm run typecheck
 | --- | --- |
 | `/` | Accueil : message commercial, catégories, sélection, « Commander en 3 étapes », présentation, contact |
 | `/boutique` | Catalogue complet, filtre par catégorie (`/boutique?categorie=abayas`, lien partageable) |
-| `/produit/[slug]` | Fiche produit : photo, prix, choix couleur/taille, bouton « Commander sur WhatsApp » |
+| `/produit/[slug]` | Fiche produit : photo, prix, choix couleur/taille, guide des tailles, bouton « Commander sur WhatsApp », « Partager à une amie » |
+
+Quand un lien du site est partagé sur WhatsApp ou Facebook, l'aperçu affiche
+l'image de la boutique (`src/app/opengraph-image.tsx`) ou, pour une fiche,
+la photo, le nom et le prix du produit. `sitemap.xml` et `robots.txt` sont
+générés automatiquement.
 
 ## ⚠️ Ce qu'il faut remplacer avant la mise en ligne
 
@@ -35,6 +40,8 @@ npm run typecheck
 | Nom de la boutique, adresse, lien Google Maps, horaires, Instagram | `src/config/boutique.ts` |
 | Produits : noms, **prix**, couleurs, tailles, descriptions | `src/data/products.ts` |
 | **Photos produits et catégories** | `src/data/products.ts` (champ `image`) — déposer les fichiers dans `public/images/produits/` puis écrire `image: '/images/produits/mon-fichier.jpg'` |
+| Guides des tailles (mesures indicatives) | `src/data/products.ts` → `SIZE_GUIDES` |
+| Favicon | `src/app/icon.svg` |
 | Photos d'ambiance de l'accueil | `src/app/page.tsx` → `HERO_IMAGE`, `STORY_IMAGE` |
 | Mention « site de démonstration » | `src/components/site-footer.tsx` |
 
@@ -69,4 +76,7 @@ que la conversation s'ouvre bien avec la vendeuse et que le message est complet.
 
 Le dépôt contient aussi une autre application à la racine : dans Vercel, créer
 un projet à partir de ce dépôt et régler **Root Directory = `chez-abaya`**.
-Framework détecté automatiquement (Next.js), aucune variable d'environnement.
+Framework détecté automatiquement (Next.js). Aucune variable d'environnement
+n'est obligatoire : l'adresse du site est déduite du domaine Vercel. Avec un nom
+de domaine personnel, définir `NEXT_PUBLIC_SITE_URL` (ex. `https://chezabaya.bj`)
+pour que les aperçus de lien et le sitemap l'utilisent.

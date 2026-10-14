@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { Product } from '@/data/products';
+import { SIZE_GUIDES, type Product } from '@/data/products';
 import { formatPrice } from '@/lib/format';
 import { orderMessage, whatsappUrl } from '@/lib/whatsapp';
-import { WhatsAppIcon } from './icons';
+import { RulerIcon, WhatsAppIcon } from './icons';
 
 /**
  * Choix de la couleur (et de la taille si l'article en a) + bouton
@@ -21,6 +21,7 @@ export function OrderPanel({ product }: { product: Product }) {
   useEffect(() => setOrigin(window.location.origin), []);
 
   const needsSize = Boolean(product.sizes?.length);
+  const guide = SIZE_GUIDES[product.category];
   const ready = !needsSize || Boolean(size);
 
   const href = whatsappUrl(
@@ -146,6 +147,48 @@ export function OrderPanel({ product }: { product: Product }) {
               );
             })}
           </div>
+          {guide ? (
+            <details className="group mt-3 rounded-sm border border-line">
+              <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 px-3 text-sm font-medium [&::-webkit-details-marker]:hidden">
+                <RulerIcon className="size-4 text-olive" />
+                Guide des tailles
+                <span className="ml-auto text-brown-soft transition-transform group-open:rotate-45" aria-hidden="true">
+                  +
+                </span>
+              </summary>
+              <div className="border-t border-line px-3 pb-3">
+                <table className="mt-2 w-full text-left text-sm">
+                  <thead>
+                    <tr className="text-xs text-brown-soft">
+                      {guide.columns.map((c) => (
+                        <th key={c} scope="col" className="py-1.5 font-medium">
+                          {c}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {guide.rows.map((row) => (
+                      <tr key={row[0]} className={`border-t border-line ${row[0] === size ? 'font-semibold' : ''}`}>
+                        {row.map((cell, i) =>
+                          i === 0 ? (
+                            <th key={i} scope="row" className="py-1.5 font-medium">
+                              {cell}
+                            </th>
+                          ) : (
+                            <td key={i} className="py-1.5">
+                              {cell}
+                            </td>
+                          ),
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="mt-2 text-xs text-brown-soft">{guide.note}</p>
+              </div>
+            </details>
+          ) : null}
           <p className="mt-2 text-xs text-brown-soft">Un doute sur la taille ? Demandez conseil dans votre message.</p>
         </fieldset>
       )}

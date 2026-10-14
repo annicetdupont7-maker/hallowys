@@ -2,9 +2,12 @@ import { BOUTIQUE } from '@/config/boutique';
 import type { Product } from '@/data/products';
 import { formatPrice } from './format';
 
-/** Lien wa.me : ouvre WhatsApp (application ou web) avec le message pré-rempli. */
-export function whatsappUrl(message: string): string {
-  return `https://wa.me/${BOUTIQUE.whatsappNumber}?text=${encodeURIComponent(message)}`;
+/**
+ * Lien wa.me : ouvre WhatsApp (application ou web) avec le message pré-rempli.
+ * Par défaut adressé à la boutique ; `null` laisse la personne choisir le contact.
+ */
+export function whatsappUrl(message: string, to: string | null = BOUTIQUE.whatsappNumber): string {
+  return `https://wa.me/${to ?? ''}?text=${encodeURIComponent(message)}`;
 }
 
 export const GENERAL_MESSAGE = `Bonjour ${BOUTIQUE.name}, je viens de votre site et j'aimerais avoir des informations.`;

@@ -5,6 +5,7 @@ import { ArrowLeftIcon, CheckIcon, TruckIcon } from '@/components/icons';
 import { OrderPanel } from '@/components/order-panel';
 import { ProductCard } from '@/components/product-card';
 import { ProductImage } from '@/components/product-image';
+import { ShareButton } from '@/components/share-button';
 import { BOUTIQUE } from '@/config/boutique';
 import { PRODUCTS, getCategory, getProduct } from '@/data/products';
 import { formatPrice } from '@/lib/format';
@@ -20,9 +21,22 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = getProduct((await params).slug);
   if (!product) return {};
+  const description = `${product.shortDescription} ${formatPrice(product.price)} — commande sur WhatsApp.`;
+  // Aperçu du lien partagé : la photo du produit plutôt que l'image générique du site.
+  const image = product.image.startsWith('https://images.unsplash.com/')
+    ? `${product.image}?auto=format&fit=crop&w=1200&h=630&q=75`
+    : product.image;
   return {
     title: product.name,
-    description: `${product.shortDescription} ${formatPrice(product.price)} — commande sur WhatsApp.`,
+    description,
+    openGraph: {
+      siteName: BOUTIQUE.name,
+      locale: 'fr_FR',
+      type: 'website',
+      title: `${product.name} · ${formatPrice(product.price)}`,
+      description,
+      images: [{ url: image, alt: product.imageAlt }],
+    },
   };
 }
 
@@ -85,7 +99,15 @@ export default async function ProductPage({ params }: Props) {
               </li>
             </ul>
 
-            <div className="mt-8 border-t border-line pt-6">
+            <div className="mt-4">
+              <ShareButton
+                title={product.name}
+                text={`Regarde ce modèle : ${product.name}, ${formatPrice(product.price)} (${BOUTIQUE.name})`}
+                path={`/produit/${product.slug}`}
+              />
+            </div>
+
+            <div className="mt-6 border-t border-line pt-6">
               <h2 className="eyebrow">Détails</h2>
               <ul className="mt-3 space-y-2 text-sm">
                 {product.details.map((d) => (

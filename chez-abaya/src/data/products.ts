@@ -94,6 +94,35 @@ export const CATEGORIES: Category[] = [
 const ABAYA_SIZES = ['S (52)', 'M (54)', 'L (56)', 'XL (58)'];
 const DRESS_SIZES = ['S', 'M', 'L', 'XL'];
 
+export type SizeGuide = { columns: string[]; rows: string[][]; note: string };
+
+/**
+ * Guides des tailles affichés sur les fiches produit.
+ * ⚠️ Mesures indicatives : à vérifier avec les vrais modèles de la boutique.
+ */
+export const SIZE_GUIDES: Partial<Record<CategoryId, SizeGuide>> = {
+  abayas: {
+    columns: ['Taille', 'Longueur', 'Votre hauteur'],
+    rows: [
+      ['S (52)', '132 cm', '1,50 – 1,58 m'],
+      ['M (54)', '137 cm', '1,58 – 1,65 m'],
+      ['L (56)', '142 cm', '1,65 – 1,72 m'],
+      ['XL (58)', '147 cm', '1,72 – 1,80 m'],
+    ],
+    note: 'Le chiffre entre parenthèses est la longueur en pouces. Coupe ample : choisissez selon votre hauteur.',
+  },
+  robes: {
+    columns: ['Taille', 'Équivalent', 'Tour de poitrine'],
+    rows: [
+      ['S', '36 – 38', '84 – 90 cm'],
+      ['M', '40 – 42', '91 – 98 cm'],
+      ['L', '44 – 46', '99 – 106 cm'],
+      ['XL', '48 – 50', '107 – 114 cm'],
+    ],
+    note: 'Entre deux tailles, prenez la plus grande. Longueur environ 140 cm.',
+  },
+};
+
 export const PRODUCTS: Product[] = [
   // ---------------------------------------------------------------- HIJABS
   {

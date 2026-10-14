@@ -8,14 +8,21 @@ import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { WhatsAppFloat } from '@/components/whatsapp-float';
 import { BOUTIQUE } from '@/config/boutique';
+import { SITE_URL } from '@/lib/site-url';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${BOUTIQUE.name} — ${BOUTIQUE.tagline}`,
     template: `%s · ${BOUTIQUE.name}`,
   },
   description:
     'Hijabs, abayas, robes modestes et accessoires à Cotonou. Découvrez la collection, consultez les prix et commandez directement sur WhatsApp. Livraison à Cotonou et environs.',
+  openGraph: {
+    siteName: BOUTIQUE.name,
+    locale: 'fr_FR',
+    type: 'website',
+  },
 };
 
 export const viewport: Viewport = {
