@@ -1,15 +1,18 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-ivory: #f8f4ec;
-  --color-ivory-deep: #efe7d8;
-  --color-sand: #e3d8c4;
-  --color-line: #ddd1bc;
-  --color-brown: #33241b;
-  --color-brown-soft: #6a5546;
-  --color-olive: #5f6544;
+  --color-ivory: #fbf6ee;
+  --color-ivory-deep: #f3e9da;
+  --color-sand: #e6d6bd;
+  --color-line: #e2d3bb;
+  --color-brown: #2b1b14;
+  --color-brown-soft: #6e5546;
+  --color-cacao: #4a2e22;
+  --color-terracotta: #b4532a;
+  --color-olive: #5f6b3a;
   --color-olive-soft: #a7a985;
-  --color-gold: #a8874f;
+  --color-gold: #b48a4a;
+  --color-gold-light: #e2c48e;
 
   --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
   --font-sans: 'DM Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -76,7 +79,38 @@
     color: var(--color-ivory);
   }
   .btn-primary:hover {
-    background: #4a3528;
+    background: var(--color-cacao);
+  }
+  .btn-gold {
+    background: var(--color-gold-light);
+    color: var(--color-brown);
+  }
+  .btn-gold:hover {
+    background: #f0d7a8;
+  }
+  .btn-ghost-light {
+    border: 1px solid rgb(251 246 238 / 0.6);
+    color: var(--color-ivory);
+  }
+  .btn-ghost-light:hover {
+    background: var(--color-ivory);
+    color: var(--color-brown);
+  }
+
+  /* Petit losange doré : ornement discret entre deux filets. */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-gold);
+  }
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    height: 1px;
+    width: 2.5rem;
+    background: currentColor;
+    opacity: 0.6;
   }
   .btn-outline {
     border: 1px solid var(--color-brown);

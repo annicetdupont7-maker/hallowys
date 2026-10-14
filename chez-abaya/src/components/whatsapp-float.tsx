@@ -1,16 +1,28 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { GENERAL_MESSAGE, whatsappUrl } from '@/lib/whatsapp';
 import { WhatsAppIcon } from './icons';
 
 /**
  * Bouton WhatsApp flottant, visible partout sauf sur les fiches produit,
  * qui ont déjà leur propre bouton « Commander sur WhatsApp ».
+ * Il apparaît après un premier défilement, pour ne pas masquer les boutons
+ * du haut de page.
  */
 export function WhatsAppFloat() {
   const pathname = usePathname();
-  if (pathname.startsWith('/produit/')) return null;
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 480);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  if (pathname.startsWith('/produit/') || !visible) return null;
 
   return (
     <a

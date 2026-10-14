@@ -6,16 +6,16 @@ import { ProductImage } from './product-image';
 export function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
   return (
     <Link href={`/produit/${product.slug}`} className="group block">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-sand">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-sand">
         <ProductImage
           src={product.image}
           alt={product.imageAlt}
           sizes="(min-width: 1024px) 22vw, (min-width: 768px) 30vw, 46vw"
           priority={priority}
-          className="transition-transform duration-500 group-hover:scale-[1.03]"
+          className="transition-transform duration-700 group-hover:scale-105"
         />
         {product.badge && (
-          <span className="absolute left-2 top-2 rounded-full bg-ivory/95 px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-brown">
+          <span className="absolute left-2 top-2 rounded-full bg-terracotta px-2.5 py-1 text-[0.62rem] font-semibold uppercase tracking-wider text-ivory">
             {product.badge}
           </span>
         )}

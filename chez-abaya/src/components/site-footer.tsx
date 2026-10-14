@@ -6,7 +6,7 @@ import { ClockIcon, InstagramIcon, PinIcon, WhatsAppIcon } from './icons';
 
 export function SiteFooter() {
   return (
-    <footer id="contact" className="scroll-mt-16 bg-brown text-ivory/85">
+    <footer id="contact" className="scroll-mt-16 border-t border-gold/30 bg-[#1f140f] text-ivory/85">
       <div className="container-page grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <p className="font-display text-3xl font-semibold text-ivory">{BOUTIQUE.name}</p>

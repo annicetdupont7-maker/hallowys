@@ -39,6 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Aller au contenu
         </a>
+        <p className="bg-brown px-4 py-2 text-center text-[0.7rem] font-medium tracking-wide text-gold-light">
+          Livraison à Cotonou & environs · Commande sur WhatsApp
+        </p>
         <SiteHeader />
         <main id="contenu" className="flex-1">
           {children}
